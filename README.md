@@ -3,11 +3,15 @@ About puma-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/puma-feedstock/blob/main/LICENSE.txt)
 
+
+About puma
+----------
+
 Home: https://github.com/nasa/puma
 
 Package license: NASA-1.3
 
-Summary: A package to compute material properties from micro-CT data.
+Summary: PuMA C++ library.
 
 Development: https://gitlab.com/jcfergus/puma-dev
 
@@ -30,11 +34,12 @@ together with PuMA's software architecture schematic.
   <img src="https://github.com/nasa/puma/raw/main/doc/source/puma_description.png" width="100%"></img>
 </p>
 
+### Citing PuMA
 If you use PuMA in your research, please use the following BibTeX entries to cite it:
 
 ```BibTeX
 @article{puma2021,
-  title={Update 3.0 to “PuMA: The Porous Microstructure Analysis software”,(PII: S2352711018300281)},
+  title={Update 3.0 to "PuMA: The Porous Microstructure Analysis software",(PII: S2352711018300281)},
   author={Ferguson, Joseph C and Semeraro, Federico and Thornton, John M and Panerai, Francesco and Borner, Arnaud and Mansour, Nagi N},
   journal={SoftwareX},
   volume={15},
@@ -53,12 +58,126 @@ If you use PuMA in your research, please use the following BibTeX entries to cit
 }
 ```
 
+About puma
+----------
+
+Home: https://github.com/nasa/puma
+
+Package license: NASA-1.3 AND GPL-3.0-or-later
+
+Summary: Desktop GUI for PuMA.
+
+Development: https://gitlab.com/jcfergus/puma-dev
+
+Documentation: https://puma-nasa.readthedocs.io/
+
+The Porous Microstructure Analysis (PuMA) software has been developed to
+compute effective material properties and perform material response simulations on
+digitized microstructures of porous media. PuMA is able to import digital three-dimensional
+images obtained from X-ray microtomography or to generate artificial microstructures
+that mimic real materials. PuMA also provides a module for interactive 3D visualizations.
+Version 3 includes modules to compute simple morphological properties such as porosity,
+volume fractions, pore diameter, and specific surface area. Additional capabilities include
+the determination of effective thermal and electrical conductivity (both radiative and solid conduction -
+including the ability to simulate local anisotropy for the latter); effective diffusivity and
+tortuosity from the continuum to the rarefied regime; techniques to determine the local material orientation,
+as well as the mechanical properties (elasticity coefficient), and the permeability of a material.
+Some examples of microstructures that have been run in the past are shown in the pictures below,
+together with PuMA's software architecture schematic.
+<p align="center">
+  <img src="https://github.com/nasa/puma/raw/main/doc/source/puma_description.png" width="100%"></img>
+</p>
+
+### Citing PuMA
+If you use PuMA in your research, please use the following BibTeX entries to cite it:
+
+```BibTeX
+@article{puma2021,
+  title={Update 3.0 to "PuMA: The Porous Microstructure Analysis software",(PII: S2352711018300281)},
+  author={Ferguson, Joseph C and Semeraro, Federico and Thornton, John M and Panerai, Francesco and Borner, Arnaud and Mansour, Nagi N},
+  journal={SoftwareX},
+  volume={15},
+  pages={100775},
+  year={2021},
+  publisher={Elsevier}
+}
+@article{puma2018,
+  title={PuMA: The porous microstructure analysis software},
+  author={Ferguson, Joseph C and Panerai, Francesco and Borner, Arnaud and Mansour, Nagi N},
+  journal={SoftwareX},
+  volume={7},
+  pages={81--87},
+  year={2018},
+  publisher={Elsevier}
+}
+```
+
+About pumapy
+------------
+
+Home: https://github.com/nasa/puma
+
+Package license: NASA-1.3
+
+Summary: The pumapy python package.
+
+Development: https://gitlab.com/jcfergus/puma-dev
+
+Documentation: https://puma-nasa.readthedocs.io/
+
+The Porous Microstructure Analysis (PuMA) software has been developed to
+compute effective material properties and perform material response simulations on
+digitized microstructures of porous media. PuMA is able to import digital three-dimensional
+images obtained from X-ray microtomography or to generate artificial microstructures
+that mimic real materials. PuMA also provides a module for interactive 3D visualizations.
+Version 3 includes modules to compute simple morphological properties such as porosity,
+volume fractions, pore diameter, and specific surface area. Additional capabilities include
+the determination of effective thermal and electrical conductivity (both radiative and solid conduction -
+including the ability to simulate local anisotropy for the latter); effective diffusivity and
+tortuosity from the continuum to the rarefied regime; techniques to determine the local material orientation,
+as well as the mechanical properties (elasticity coefficient), and the permeability of a material.
+Some examples of microstructures that have been run in the past are shown in the pictures below,
+together with PuMA's software architecture schematic.
+<p align="center">
+  <img src="https://github.com/nasa/puma/raw/main/doc/source/puma_description.png" width="100%"></img>
+</p>
+
+### Citing PuMA
+If you use PuMA in your research, please use the following BibTeX entries to cite it:
+
+```BibTeX
+@article{puma2021,
+  title={Update 3.0 to "PuMA: The Porous Microstructure Analysis software",(PII: S2352711018300281)},
+  author={Ferguson, Joseph C and Semeraro, Federico and Thornton, John M and Panerai, Francesco and Borner, Arnaud and Mansour, Nagi N},
+  journal={SoftwareX},
+  volume={15},
+  pages={100775},
+  year={2021},
+  publisher={Elsevier}
+}
+@article{puma2018,
+  title={PuMA: The porous microstructure analysis software},
+  author={Ferguson, Joseph C and Panerai, Francesco and Borner, Arnaud and Mansour, Nagi N},
+  journal={SoftwareX},
+  volume={7},
+  pages={81--87},
+  year={2018},
+  publisher={Elsevier}
+}
+```
 
 Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>GitHub Actions</td>
+    <td>
+      <a href="https://github.com/conda-forge/puma-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/puma-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
@@ -72,115 +191,17 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_numpy1.22python3.10.____cpython</td>
+              <td>osx_64_microarch_level1</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_numpy1.22python3.10.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_microarch_level1" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_numpy1.22python3.8.____cpython</td>
+              <td>osx_64_microarch_level3</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_numpy1.22python3.8.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_numpy1.22python3.9.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_numpy1.22python3.9.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>linux_64_numpy1.23python3.11.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_numpy1.23python3.11.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_64_numpy1.22python3.10.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_numpy1.22python3.10.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_64_numpy1.22python3.8.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_numpy1.22python3.8.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_64_numpy1.22python3.9.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_numpy1.22python3.9.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_64_numpy1.23python3.11.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_numpy1.23python3.11.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64_numpy1.22python3.10.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_numpy1.22python3.10.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64_numpy1.22python3.8.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_numpy1.22python3.8.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64_numpy1.22python3.9.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_numpy1.22python3.9.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>osx_arm64_numpy1.23python3.11.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_numpy1.23python3.11.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_numpy1.22python3.10.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=win&configuration=win%20win_64_numpy1.22python3.10.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_numpy1.22python3.8.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=win&configuration=win%20win_64_numpy1.22python3.8.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_numpy1.22python3.9.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=win&configuration=win%20win_64_numpy1.22python3.9.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_numpy1.23python3.11.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=13678&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=win&configuration=win%20win_64_numpy1.23python3.11.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/puma-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_microarch_level3" alt="variant">
                 </a>
               </td>
             </tr>
@@ -196,7 +217,9 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libpuma-green.svg)](https://anaconda.org/conda-forge/libpuma) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libpuma.svg)](https://anaconda.org/conda-forge/libpuma) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libpuma.svg)](https://anaconda.org/conda-forge/libpuma) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libpuma.svg)](https://anaconda.org/conda-forge/libpuma) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-puma-green.svg)](https://anaconda.org/conda-forge/puma) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/puma.svg)](https://anaconda.org/conda-forge/puma) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/puma.svg)](https://anaconda.org/conda-forge/puma) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/puma.svg)](https://anaconda.org/conda-forge/puma) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-pumapy-green.svg)](https://anaconda.org/conda-forge/pumapy) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pumapy.svg)](https://anaconda.org/conda-forge/pumapy) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pumapy.svg)](https://anaconda.org/conda-forge/pumapy) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pumapy.svg)](https://anaconda.org/conda-forge/pumapy) |
 
 Installing puma
 ===============
@@ -208,42 +231,87 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `puma` can be installed with `conda`:
+How to use
+----------
+
+<details>
+<summary>With conda</summary>
 
 ```
-conda install puma
+conda install libpuma puma pumapy
 ```
 
-or with `mamba`:
+</details>
+
+<details>
+<summary>With mamba</summary>
 
 ```
-mamba install puma
+mamba install libpuma puma pumapy
 ```
 
-It is possible to list all of the versions of `puma` available on your platform with `conda`:
+</details>
+
+<details>
+<summary>With pixi</summary>
 
 ```
-conda search puma --channel conda-forge
+# for adding to your local project
+pixi add libpuma puma pumapy
+# for installing globally
+pixi global install libpuma puma pumapy
 ```
 
-or with `mamba`:
+</details>
+
+Search package versions
+-----------------------
+
+It is possible to list all of the versions of `libpuma` available on your platform:
+
+<details>
+<summary>With conda</summary>
 
 ```
-mamba search puma --channel conda-forge
+conda search libpuma --channel conda-forge
 ```
 
-Alternatively, `mamba repoquery` may provide more information:
+</details>
+
+<details>
+<summary>With mamba</summary>
+
+```
+mamba search libpuma --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With pixi</summary>
+
+```
+pixi search libpuma --channel conda-forge
+```
+
+</details>
+
+<details>
+<summary>With mamba repoquery, which may provide more information</summary>
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search puma --channel conda-forge
+mamba repoquery search libpuma --channel conda-forge
 
-# List packages depending on `puma`:
-mamba repoquery whoneeds puma --channel conda-forge
+# List packages depending on `libpuma`:
+mamba repoquery whoneeds libpuma --channel conda-forge
 
-# List dependencies of `puma`:
-mamba repoquery depends puma --channel conda-forge
+# List dependencies of `libpuma`:
+mamba repoquery depends libpuma --channel conda-forge
 ```
+
+</details>
+
 
 
 About conda-forge
@@ -260,19 +328,17 @@ for each of the installable packages. Such a repository is known as a *feedstock
 A feedstock is made up of a conda recipe (the instructions on what and how to build
 the package) and the necessary configurations for automatic building using freely
 available continuous integration services. Thanks to the awesome service provided by
-[Azure](https://azure.microsoft.com/en-us/services/devops/), [GitHub](https://github.com/),
-[CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
-[Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
+[Azure](https://azure.microsoft.com/en-us/services/devops/) and [GitHub](https://github.com/)
 it is possible to build and upload installable packages to the
 [conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -299,7 +365,7 @@ merged, the recipe will be re-built and uploaded automatically to the
 everybody to install and use from the `conda-forge` channel.
 Note that all branches in the conda-forge/puma-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
@@ -312,6 +378,8 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@EricAtORS](https://github.com/EricAtORS/)
 * [@Tobias-Fischer](https://github.com/Tobias-Fischer/)
-* [@fsemerar](https://github.com/fsemerar/)
+* [@fedesemeraro](https://github.com/fedesemeraro/)
+* [@joseph-ferguson](https://github.com/joseph-ferguson/)
 
