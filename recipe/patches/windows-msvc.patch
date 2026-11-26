@@ -606,3 +606,81 @@ index ef66975..feb6865 100644
  mac{LIBS += -lomp}
  unix:!macx {LIBS += -lgomp}
  LIBS += -L$${INSTALL_PREFIX}/lib -lPuMA
+@@ -28,44 +34,46 @@
+ unix:QMAKE_CXXFLAGS += -fsigned-char
+ 
+ 
++# Bare wildcards in these lists are left unexpanded by qmake on Windows
++# ("Failure to find: ../src/*.cpp"), so they are globbed with files().
+ SOURCES += \
+-        ../src/*.cpp \
+-        ../src/Export/*.cpp \
+-        ../src/Generate/*.cpp \
+-        ../src/Import/*.cpp \
+-        ../src/Log/*.cpp \
+-        ../src/MaterialProperties/*.cpp \
+-        ../src/Process/*.cpp \
+-        ../src/Utilities/*.cpp \
+-        ../src/Utilities/qcustomplot/*.cpp \
+-        ../src/Plugins/*.cpp \
+-        ../src/Visualization/*.cpp \
++        $$files(../src/*.cpp) \
++        $$files(../src/Export/*.cpp) \
++        $$files(../src/Generate/*.cpp) \
++        $$files(../src/Import/*.cpp) \
++        $$files(../src/Log/*.cpp) \
++        $$files(../src/MaterialProperties/*.cpp) \
++        $$files(../src/Process/*.cpp) \
++        $$files(../src/Utilities/*.cpp) \
++        $$files(../src/Utilities/qcustomplot/*.cpp) \
++        $$files(../src/Plugins/*.cpp) \
++        $$files(../src/Visualization/*.cpp) \
+ 
+ 
+ HEADERS += \
+-        ../src/*.h  \
+-        ../src/Export/*.h \
+-        ../src/Generate/*.h \
+-        ../src/Import/*.h \
+-        ../src/Log/*.h \
+-        ../src/MaterialProperties/*.h \
+-        ../src/Process/*.h \
+-        ../src/Utilities/*.h \
+-        ../src/Utilities/qcustomplot/*.h \
+-        ../src/Plugins/*.h \
+-        ../src/Visualization/*.h \
++        $$files(../src/*.h)  \
++        $$files(../src/Export/*.h) \
++        $$files(../src/Generate/*.h) \
++        $$files(../src/Import/*.h) \
++        $$files(../src/Log/*.h) \
++        $$files(../src/MaterialProperties/*.h) \
++        $$files(../src/Process/*.h) \
++        $$files(../src/Utilities/*.h) \
++        $$files(../src/Utilities/qcustomplot/*.h) \
++        $$files(../src/Plugins/*.h) \
++        $$files(../src/Visualization/*.h) \
+ 
+ 
+ FORMS += \
+-        ../src/*.ui \
+-        ../src/Export/*.ui \
+-        ../src/Generate/*.ui \
+-        ../src/Import/*.ui \
+-        ../src/Log/*.ui \
+-        ../src/MaterialProperties/*.ui \
+-        ../src/Process/*.ui \
+-        ../src/Plugins/*.ui \
+-        ../src/Visualization/*.ui \
++        $$files(../src/*.ui) \
++        $$files(../src/Export/*.ui) \
++        $$files(../src/Generate/*.ui) \
++        $$files(../src/Import/*.ui) \
++        $$files(../src/Log/*.ui) \
++        $$files(../src/MaterialProperties/*.ui) \
++        $$files(../src/Process/*.ui) \
++        $$files(../src/Plugins/*.ui) \
++        $$files(../src/Visualization/*.ui) \
+ 
+ RESOURCES += \
+         ../extras/resource.qrc
