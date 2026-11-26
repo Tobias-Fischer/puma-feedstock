@@ -18,7 +18,7 @@ if [ "$(uname)" != "Darwin" ]; then
       ln -sf "$(command -v "${GXX}")" g++
       export PATH="${PWD}:${PATH}"
 fi
-qmake \
+qmake6 \
       BUILD_PREFIX=$PREFIX \
       INSTALL_PREFIX=$PREFIX
 make -j$CPU_COUNT
