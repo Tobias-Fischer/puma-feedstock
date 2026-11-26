@@ -22,9 +22,31 @@ if [ "$(uname)" != "Darwin" ]; then
       ln -sf "$(command -v "${GXX}")" g++
       export PATH="${PWD}:${PATH}"
 fi
-qmake6 \
-      BUILD_PREFIX=$PREFIX \
-      INSTALL_PREFIX=$PREFIX
+if [ "${CONDA_BUILD_CROSS_COMPILATION:-0}" = "1" ]; then
+      # The qmake6 in the host prefix is a target binary. Run the build
+      # machine's qmake6 instead and hand it the host prefix's Qt paths, with
+      # the Host* entries pointing at the build prefix so moc, uic and rcc are
+      # runnable. HostData stays on the host prefix because that is where the
+      # mkspecs describing the target Qt live.
+      cp "${PREFIX}/bin/qt6.conf" cross_qt.conf
+      cat >> cross_qt.conf <<EOF
+HostPrefix = ${BUILD_PREFIX}
+HostBinaries = ${BUILD_PREFIX}/lib/qt6/bin
+HostLibraryExecutables = ${BUILD_PREFIX}/lib/qt6
+HostLibraries = ${BUILD_PREFIX}/lib
+HostData = ${PREFIX}/lib/qt6
+EOF
+      "${BUILD_PREFIX}/bin/qmake6" -qtconf "${PWD}/cross_qt.conf" \
+            QMAKE_CC="${CC}" \
+            QMAKE_CXX="${CXX}" \
+            QMAKE_LINK="${CXX}" \
+            BUILD_PREFIX=$PREFIX \
+            INSTALL_PREFIX=$PREFIX
+else
+      qmake6 \
+            BUILD_PREFIX=$PREFIX \
+            INSTALL_PREFIX=$PREFIX
+fi
 make -j$CPU_COUNT
 make install
 

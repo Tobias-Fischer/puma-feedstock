@@ -10,7 +10,7 @@ cmake -S cpp -B build -G Ninja %CMAKE_ARGS% ^
       -D CMAKE_INSTALL_PREFIX=%PUMA_PREFIX%
 if errorlevel 1 exit 1
 
-cmake --build build --parallel %CPU_COUNT%
+cmake --build build --parallel %CPU_COUNT% -- -k 0
 if errorlevel 1 exit 1
 
 cmake --install build

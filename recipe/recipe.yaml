@@ -177,11 +177,19 @@ outputs:
         # On Windows qmake generates for nmake, which comes with the compiler.
         - if: unix
           then: make
+        # The host qmake, moc, uic and rcc are built for the target and cannot
+        # run when cross-compiling, so the build machine's own Qt supplies them.
+        - if: build_platform != target_platform
+          then:
+            - qt6-main
+            - qt6-3d
       host:
         - if: linux
           then:
             - xorg-libxfixes
             - libgl-devel
+            # Qt 6 links libOpenGL directly, not only libGL.
+            - libopengl-devel
         - ${{ pin_subpackage('libpuma', exact=True) }}
         - eigen
         - fftw
