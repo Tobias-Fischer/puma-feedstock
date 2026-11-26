@@ -1,5 +1,5 @@
 diff --git a/cpp/CMakeLists.txt b/cpp/CMakeLists.txt
-index 60bd142..2687f5c 100644
+index 25d544f..83cb7c8 100644
 --- a/cpp/CMakeLists.txt
 +++ b/cpp/CMakeLists.txt
 @@ -15,7 +15,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -11,7 +11,7 @@ index 60bd142..2687f5c 100644
 +    # Nothing in PuMA is annotated for export, so every symbol is exported the
 +    # way a unix shared library would export it.
 +    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
-+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /openmp /bigobj")
++    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /openmp /bigobj /permissive-")
 +    add_definitions(-D_USE_MATH_DEFINES -DNOMINMAX -D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_WARNINGS)
 +    # The solvers pick between std::accumulate (MAC) and libstdc++'s parallel
 +    # mode (LINUX) and compile to nothing when neither is defined, so MSVC
@@ -21,7 +21,7 @@ index 60bd142..2687f5c 100644
      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -Xpreprocessor -fopenmp -Wno-format -Wno-literal-conversion -Wno-register -Wno-return-type")
      add_definitions(-DMAC) # preprocessor directive
  elseif(UNIX)
-@@ -50,7 +60,14 @@ add_library(PuMA SHARED ${SOURCES})
+@@ -56,7 +66,14 @@ add_library(PuMA SHARED ${SOURCES})
  set_target_properties(PuMA PROPERTIES PUBLIC_HEADER "${HEADERS}")
  
  # Dependencies
@@ -37,7 +37,7 @@ index 60bd142..2687f5c 100644
  if(APPLE)
      SET(DEP_LIBS "${DEP_LIBS} -lomp")
  endif()
-@@ -60,6 +77,8 @@ target_link_libraries(PuMA ${DEP_LIBS})
+@@ -66,6 +83,8 @@ target_link_libraries(PuMA ${DEP_LIBS})
  
  # Install PuMA library
  install(TARGETS PuMA
@@ -197,6 +197,110 @@ index b5f7e64..6189c96 100644
  #include <stdexcept>   // std::runtime_error
  #include <cstring>    // memcpy()
  #include <vector>
+diff --git a/cpp/src/export/binary/export_bin.cpp b/cpp/src/export/binary/export_bin.cpp
+index fa62edf..5c686a9 100644
+--- a/cpp/src/export/binary/export_bin.cpp
++++ b/cpp/src/export/binary/export_bin.cpp
+@@ -1,5 +1,7 @@
+ #include "export_bin.h"
+ 
++#include <vector>
++
+ 
+ bool puma::export_bin(Workspace *work, const std::string& fileName) {
+     Export_bin<short> exporter(&(work->matrix),fileName);
+@@ -75,7 +77,8 @@ template<class T> bool Export_bin<T>::exportHelper() {
+ 
+     FILE *file;
+     int n = fileName.length();
+-    char fileName_char_array[n + 1];
++    std::vector<char> fileName_char_buffer(n + 16);
++    char *fileName_char_array = fileName_char_buffer.data();
+     strcpy(fileName_char_array, (fileName+".puma").c_str());
+     file = fopen(fileName_char_array,"w");
+ 
+@@ -182,7 +185,8 @@ bool Export_bin_MatrixVec3::exportHelper() {
+ 
+     FILE *file;
+     int n = fileName.length();
+-    char fileName_char_array[n + 1];
++    std::vector<char> fileName_char_buffer(n + 16);
++    char *fileName_char_array = fileName_char_buffer.data();
+     strcpy(fileName_char_array, (fileName+".puma").c_str());
+     file = fopen(fileName_char_array,"w");
+ 
+diff --git a/cpp/src/export/vtk/export_vtk.cpp b/cpp/src/export/vtk/export_vtk.cpp
+index b675e1b..fe0e14a 100644
+--- a/cpp/src/export/vtk/export_vtk.cpp
++++ b/cpp/src/export/vtk/export_vtk.cpp
+@@ -1,5 +1,7 @@
+ #include "export_vtk.h"
+ 
++#include <vector>
++
+ 
+ bool puma::export_vtk(puma::Matrix<double> *matrix, const std::string& fileName, char fileType, bool unstructured, int numThreads) {
+     Export_vtk_Matrix<double> exporter(matrix,fileName,fileType,unstructured,numThreads);
+@@ -92,7 +94,8 @@ template<class T> bool Export_vtk_Matrix<T>::exportHelper() {
+     char s[256];
+     FILE *file;
+     int n = fileName.length();
+-    char fileName_char_array[n + 1];
++    std::vector<char> fileName_char_buffer(n + 16);
++    char *fileName_char_array = fileName_char_buffer.data();
+     strcpy(fileName_char_array, (fileName).c_str());
+     file = fopen(fileName_char_array,"w");
+     if (file != nullptr) {
+@@ -291,7 +294,8 @@ bool Export_vtk_MatVec3::exportHelper() {
+     char s[256];
+     FILE *file;
+     int n = fileName.length();
+-    char fileName_char_array[n + 1];
++    std::vector<char> fileName_char_buffer(n + 16);
++    char *fileName_char_array = fileName_char_buffer.data();
+     strcpy(fileName_char_array, (fileName).c_str());
+     file = fopen(fileName_char_array,"w");
+     if (file != nullptr) {
+@@ -496,7 +500,8 @@ bool Export_vtk_Workspace::exportHelper() {
+     char s[256];
+     FILE *file;
+     int n = fileName.length();
+-    char fileName_char_array[n + 1];
++    std::vector<char> fileName_char_buffer(n + 16);
++    char *fileName_char_array = fileName_char_buffer.data();
+     strcpy(fileName_char_array, (fileName).c_str());
+     file = fopen(fileName_char_array,"w");
+     if (file != nullptr) {
+diff --git a/cpp/src/filter/median/medianfilter3d.cpp b/cpp/src/filter/median/medianfilter3d.cpp
+index 9278053..8020838 100644
+--- a/cpp/src/filter/median/medianfilter3d.cpp
++++ b/cpp/src/filter/median/medianfilter3d.cpp
+@@ -1,5 +1,7 @@
+ #include "medianfilter3d.h"
+ 
++#include <vector>
++
+ 
+ bool puma::filter_Median3D(Workspace *work, int window_radius, int numThreads) {
+ 
+@@ -185,7 +187,7 @@ short MedianFilter3D::medianValue(long x, long y, long z) {
+     int zSize = zEnd - zStart + 1;
+ 
+     // creating an array that will store all of the values in the window
+-    short totalValues[xSize * ySize * zSize];
++    std::vector<short> totalValues(xSize * ySize * zSize);
+ 
+     //iterating through the window and adding all the elements into the totalValues
+     for( long i=xStart; i<=xEnd; i++ ) {
+@@ -197,7 +199,7 @@ short MedianFilter3D::medianValue(long x, long y, long z) {
+     }
+ 
+     //computing the median value of the window elements
+-    short median = getMedian(totalValues, xSize*ySize*zSize);
++    short median = getMedian(totalValues.data(), xSize*ySize*zSize);
+ 
+     return median;
+ }
 diff --git a/cpp/src/import/3D_Tiff/import_3DTiff.cpp b/cpp/src/import/3D_Tiff/import_3DTiff.cpp
 index abb4990..6e26f39 100644
 --- a/cpp/src/import/3D_Tiff/import_3DTiff.cpp
@@ -255,11 +359,51 @@ index be46f32..49c3ca2 100644
      bool sizeOfDomain();
      bool importHelper();
  
+diff --git a/cpp/src/import/binary/import_bin.cpp b/cpp/src/import/binary/import_bin.cpp
+index 4c52bf7..2d51645 100644
+--- a/cpp/src/import/binary/import_bin.cpp
++++ b/cpp/src/import/binary/import_bin.cpp
+@@ -1,5 +1,7 @@
+ #include "import_bin.h"
+ 
++#include <vector>
++
+ #include <utility>
+ 
+ 
+@@ -74,7 +76,8 @@ template<class T> bool Import_bin<T>::importHelper() {
+ 
+     FILE *pfile;
+     int n = fileName.length();
+-    char fileName_char_array[n + 1];
++    std::vector<char> fileName_char_buffer(n + 16);
++    char *fileName_char_array = fileName_char_buffer.data();
+     strcpy(fileName_char_array, fileName.c_str());
+     pfile = fopen(fileName_char_array,"rb");
+ 
+@@ -199,7 +202,8 @@ bool Import_bin_MatrixVec3::importHelper() {
+ 
+     FILE *pfile;
+     int n = fileName.length();
+-    char fileName_char_array[n + 1];
++    std::vector<char> fileName_char_buffer(n + 16);
++    char *fileName_char_array = fileName_char_buffer.data();
+     strcpy(fileName_char_array, fileName.c_str());
+     pfile = fopen(fileName_char_array,"rb");
+ 
 diff --git a/cpp/src/materialproperties/orientation/raycasting/raycasting.cpp b/cpp/src/materialproperties/orientation/raycasting/raycasting.cpp
-index 96f2e77..23cb249 100644
+index 96f2e77..5041792 100644
 --- a/cpp/src/materialproperties/orientation/raycasting/raycasting.cpp
 +++ b/cpp/src/materialproperties/orientation/raycasting/raycasting.cpp
-@@ -196,7 +196,7 @@ void RayCasting::assignWalkersDirection(){
+@@ -1,5 +1,7 @@
+ #include "raycasting.h"
+ 
++#include <limits>
++
+ 
+ ////// PARTICLE METHOD //////
+ 
+@@ -196,7 +198,7 @@ void RayCasting::assignWalkersDirection(){
      std::vector<int> maxAngle(sphericalWalkers[0].size(),0);
  
  #pragma omp parallel for
@@ -268,6 +412,19 @@ index 96f2e77..23cb249 100644
          for(unsigned int j=0;j<sphericalWalkers[0].size();j++) {
              double theta = acos(sphericalWalkers[0][i].dir.x * sphericalWalkers[0][j].dir.x + sphericalWalkers[0][i].dir.y * sphericalWalkers[0][j].dir.y + sphericalWalkers[0][i].dir.z * sphericalWalkers[0][j].dir.z) * (180./M_PI);
              double phi = acos(sphericalWalkers[0][i].dir.x * (-sphericalWalkers[0][j].dir.x) + sphericalWalkers[0][i].dir.y * (-sphericalWalkers[0][j].dir.y) + sphericalWalkers[0][i].dir.z * (-sphericalWalkers[0][j].dir.z)) * (180./M_PI);
+@@ -427,9 +429,9 @@ std::vector<double> RayCasting::nextEdgeIntersection(int i, int ind){
+     tZ = (nZ-sphericalWalkers[ind][i].pos.z)/sphericalWalkers[ind][i].dir.z; // time to get to z wall
+ 
+     // For the cases in which the angle is exactly 0 (preventing Inf or Nan)
+-    if(tX != tX || tX  == +1.0/0.0 || tX  == -1.0/0.0) tX = 1e10;
+-    if(tY != tY || tY  == +1.0/0.0 || tY  == -1.0/0.0) tY = 1e10;
+-    if(tZ != tZ || tZ  == +1.0/0.0 || tZ  == -1.0/0.0) tZ = 1e10;
++    if(tX != tX || tX  == +std::numeric_limits<double>::infinity() || tX  == -std::numeric_limits<double>::infinity()) tX = 1e10;
++    if(tY != tY || tY  == +std::numeric_limits<double>::infinity() || tY  == -std::numeric_limits<double>::infinity()) tY = 1e10;
++    if(tZ != tZ || tZ  == +std::numeric_limits<double>::infinity() || tZ  == -std::numeric_limits<double>::infinity()) tZ = 1e10;
+ 
+     // Step 3: Setting the next position of the sphericalWalker based on the nearest interface
+     if(tX<=tY && tX<=tZ){ // if the x wall is the closest
 diff --git a/cpp/src/utilities/logger/logger.cpp b/cpp/src/utilities/logger/logger.cpp
 index 5136d62..14f5601 100644
 --- a/cpp/src/utilities/logger/logger.cpp

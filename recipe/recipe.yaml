@@ -27,6 +27,10 @@ source:
       # C++17 has std::clamp, and Qt 6 calls it, so every GUI file that includes
       # both failed with an ambiguous call. Nothing in PuMA uses the copy.
       - patches/std-clamp.patch
+      # The marching cubes lookup tables store -1 in plain char arrays, which
+      # is a narrowing error where char is unsigned, as on aarch64. The library
+      # and the GUI are compiled with -fsigned-char instead.
+      - patches/signed-char.patch
       # Lets the library and the GUI compile with MSVC: a compat header for the
       # few POSIX names in use, binary-mode file I/O for STL export, and Windows
       # branches in the cmake and qmake projects.
