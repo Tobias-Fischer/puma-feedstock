@@ -32,11 +32,13 @@ source:
       # branches in the cmake and qmake projects.
       - patches/windows-msvc.patch
   # PuMA vendors QCustomPlot 2.0.0, which predates Qt 6. 2.1.1 is a drop-in
-  # replacement that builds against Qt 6, so it is unpacked over the vendored
-  # copy. The license is unchanged (GPL-3.0-or-later).
+  # replacement that builds against Qt 6. rattler-build refuses to unpack one
+  # source over another, so it lands next to the tree and the GUI build script
+  # copies it over the vendored files. The license is unchanged
+  # (GPL-3.0-or-later).
   - url: https://www.qcustomplot.com/release/2.1.1/QCustomPlot-source.tar.gz
     sha256: 5e2d22dec779db8f01f357cbdb25e54fbcf971adaee75eae8d7ad2444487182f
-    target_directory: gui/src/Utilities/qcustomplot
+    target_directory: qcustomplot-2.1.1
 
 build:
   number: ${{ build + 100 * (microarch_level | default("1") | int - 1) }}

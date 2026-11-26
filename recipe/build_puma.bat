@@ -5,6 +5,13 @@
 :: prefix. qmake wants forward slashes.
 set "PUMA_PREFIX=%LIBRARY_PREFIX:\=/%"
 
+:: Replace the vendored QCustomPlot 2.0.0, which predates Qt 6, with the 2.1.1
+:: release the recipe fetches as a second source.
+for %%f in (qcustomplot.h qcustomplot.cpp GPL.txt) do (
+    copy /Y "qcustomplot-2.1.1\%%f" "gui\src\Utilities\qcustomplot\%%f"
+    if errorlevel 1 exit 1
+)
+
 cd gui\build
 if errorlevel 1 exit 1
 
